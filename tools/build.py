@@ -136,10 +136,8 @@ def load_config():
 
 
 def build_manifest(cfg):
-    return {
-        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "collections": {c["id"]: scan_collection(c) for c in cfg["collections"]},
-    }
+    # 刻意不写构建时间：清单只随内容变化，upload.bat 才能靠 diff 判断有没有改动
+    return {"collections": {c["id"]: scan_collection(c) for c in cfg["collections"]}}
 
 
 def assemble():
@@ -174,7 +172,7 @@ def main():
         json.dump(manifest, fh, ensure_ascii=False, indent=2)
         fh.write("\n")
 
-    print("篇目清单")
+    print("篇目清单  %s" % datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
     for c in cfg["collections"]:
         items = manifest["collections"][c["id"]]
         total = sum(i["bytes"] for i in items)
