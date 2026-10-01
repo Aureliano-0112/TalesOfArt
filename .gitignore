@@ -10,8 +10,9 @@ _tmp/
 _pages/
 .trae-html-share-packages/
 
-# 原书 PDF：受版权保护，只留在本地，不随仓库发布
+# 原书 PDF 与原文底本：受版权保护，只留在本地，不随仓库发布
 *.pdf
+content/
 
 # 系统垃圾
 .DS_Store

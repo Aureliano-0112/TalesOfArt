@@ -24,8 +24,9 @@ CONFIG = os.path.join(ROOT, "site.config.json")
 MANIFEST = os.path.join(ROOT, "data", "manifest.json")
 OUT = os.path.join(ROOT, "_site")
 
-# 发布时需要带上这些（其余留在仓库里，不进站点）
-SITE_ITEMS = ["index.html", "assets", "data", "site.config.json", "content", "interpretation"]
+# 发布时固定要带上的。正文文件夹由 site.config.json 的 collections 决定，
+# 没有被任何栏目引用的文件夹只留在仓库里，不进站点。
+BASE_ITEMS = ["index.html", "assets", "data", "site.config.json"]
 EXTRA_FILES = {".nojekyll": ""}
 
 CN = {"零": 0, "〇": 0, "一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5,
@@ -140,11 +141,11 @@ def build_manifest(cfg):
     return {"collections": {c["id"]: scan_collection(c) for c in cfg["collections"]}}
 
 
-def assemble():
+def assemble(cfg):
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
-    for item in SITE_ITEMS:
+    for item in BASE_ITEMS + [c["dir"] for c in cfg["collections"]]:
         src = os.path.join(ROOT, item)
         if not os.path.exists(src):
             continue
@@ -180,7 +181,7 @@ def main():
         for i in items[:2]:
             print("       · %s  %s" % (i["label"], i["lead"][:32]))
 
-    assemble()
+    assemble(cfg)
     print("\n已写出 %s" % os.path.relpath(MANIFEST, ROOT))
     print("已组装 %s/（可直接发布）" % os.path.relpath(OUT, ROOT))
 

@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════
-   《谈艺录》原文 · 导读
+   《谈艺录》白话导读
    线装书的实物语言：磁青书衣、生宣纸、朱砂批注、鱼尾、钤印
    ══════════════════════════════════════════════════════════ */
 
@@ -84,6 +84,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 
 /* 栏目切换 */
 .tabs{display:flex;margin:16px 20px 0;border-bottom:1px solid rgba(239,234,221,.16);}
+.tabs[hidden]{display:none;}
 .tab{
   flex:1;background:none;border:0;cursor:pointer;
   padding:.6em .3em .54em;margin-bottom:-1px;

@@ -1,4 +1,4 @@
-﻿# 一键上传 content 与 interpretation
+﻿# 一键上传 interpretation（导读）
 # 由根目录的 upload.bat 调用；也可以直接 powershell -File tools\upload.ps1
 
 $ErrorActionPreference = "Stop"
@@ -6,13 +6,13 @@ $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
 
 $SiteUrl = "https://aureliano-0112.github.io/TalesOfArt/"
-$Host.UI.RawUI.WindowTitle = "谈艺录 · 上传原文与导读"
+$Host.UI.RawUI.WindowTitle = "谈艺录 · 上传导读"
 
 function Say($text, $color = "Gray") { Write-Host "  $text" -ForegroundColor $color }
 function Bad($text) { Write-Host "  $text" -ForegroundColor Red }
 
 Write-Host ""
-Say "《谈艺录》· 上传 content 与 interpretation"
+Say "《谈艺录》· 上传 interpretation（导读）"
 Say "------------------------------------------"
 Write-Host ""
 
@@ -33,8 +33,8 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
     Say "· 没找到 python，跳过清单刷新（线上构建时会自动生成）"
 }
 
-Say "· 暂存 content、interpretation、data\manifest.json"
-& git add content interpretation data/manifest.json
+Say "· 暂存 interpretation、data\manifest.json"
+& git add interpretation data/manifest.json
 if ($LASTEXITCODE -ne 0) { Bad "[!] git add 失败。"; exit 1 }
 
 & git diff --cached --quiet
@@ -51,7 +51,7 @@ Say "本次改动："
 Write-Host ""
 
 $stamp = Get-Date -Format "yyyy-MM-dd HH:mm"
-& git commit -m "更新原文与导读 $stamp"
+& git commit -m "更新导读 $stamp"
 if ($LASTEXITCODE -ne 0) { Bad "[!] 提交失败，请查看上面的 git 报错。"; exit 1 }
 
 Say "· 推送到 GitHub"

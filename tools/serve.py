@@ -81,7 +81,7 @@ def main():
         summary = "配置读取失败：%s" % err
 
     print()
-    print("  《谈艺录》原文 · 导读　本地预览")
+    print("  《谈艺录》白话导读　本地预览")
     print("  " + "-" * 44)
     print("  目录   : %s" % ROOT)
     print("  篇目   : %s" % summary)

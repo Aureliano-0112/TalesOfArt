@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════════
-   《谈艺录》原文 · 导读 阅读器
-   · 栏目与文件夹的对应关系写在 site.config.json
+   《谈艺录》白话导读 阅读器
+   · 栏目与文件夹的对应关系写在 site.config.json（目前只有「导读」一栏）
    · 篇目清单来自 data/manifest.json（本地开发时改用 /api/manifest 实时扫描）
    · 打开页面只加载当前一篇，其余在后台预取
    ══════════════════════════════════════════════════════════ */
@@ -264,9 +264,13 @@ function loadManifest() {
 }
 
 /* ═══ 五、栏目切换 ═══════════════════════════════════════ */
+function solo() { return CFG.collections.length < 2; }
+
 function buildTabs() {
   var box = $("tabs");
   box.innerHTML = "";
+  box.hidden = solo();          // 只有一栏时不必摆一排标签
+  if (solo()) return;
   CFG.collections.forEach(function (c) {
     var b = document.createElement("button");
     b.type = "button";
@@ -287,7 +291,7 @@ function syncTabs() {
     tabs[i].setAttribute("aria-selected", on ? "true" : "false");
   }
   var col = colById(state.col);
-  if (col) $("spineSub").textContent = col.label;
+  if (col && !solo()) $("spineSub").textContent = col.label;
 }
 
 function switchTo(colId, key, keepHash) {
@@ -303,7 +307,7 @@ function switchTo(colId, key, keepHash) {
 
   if (!state.items.length) {
     showEmpty(col);
-    document.title = CFG.title + " · " + col.label;
+    document.title = CFG.title + (solo() ? "" : " · " + col.label);
     return;
   }
   var idx = 0;
@@ -411,7 +415,7 @@ function renderArticle(idx) {
     it._hay = md.toLowerCase();
     paper.innerHTML = paint(it, md, col);
     if ($("q").value.trim()) renderTOC($("q").value);
-    document.title = it.title + " · " + CFG.title + col.label;
+    document.title = it.title + " · " + CFG.title + (solo() ? "" : col.label);
     window.scrollTo({ top: 0, behavior: "auto" });
     $("progress").style.width = "0%";
     closeRail();
