@@ -1,0 +1,11 @@
+# 仓库内统一用 LF，避免不同系统之间来回改写换行符
+* text=auto eol=lf
+
+# Windows 批处理按 CRLF 检出更稳妥
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 二进制
+*.pdf binary
+*.png binary
+*.jpg binary

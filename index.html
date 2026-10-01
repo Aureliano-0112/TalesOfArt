@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>談藝錄 · 原文與導讀</title>
+<meta name="description" content="錢鍾書《談藝錄》原文選錄與白話導讀，可切換對照閱讀。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23AE3225'/%3E%3Crect x='6' y='6' width='20' height='20' rx='2' fill='none' stroke='%23F2EFE4' stroke-width='1.6'/%3E%3Cpath d='M16 9v14M9 16h14' stroke='%23F2EFE4' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<div id="progress"></div>
+
+<button class="rail-toggle" id="railToggle" aria-label="打开目次">目次</button>
+
+<aside class="rail" id="rail">
+  <div class="rail-top">
+    <div class="spine">
+      <span class="spine-a">談藝錄</span>
+      <span class="spine-b" id="spineSub">原文 · 導讀</span>
+    </div>
+    <div class="rail-note"><b>錢鍾書</b>論詩論藝<br>原文選錄 · 白話導讀</div>
+  </div>
+
+  <div class="rail-rule"></div>
+
+  <div class="tabs" id="tabs" role="tablist" aria-label="栏目"></div>
+
+  <div class="rail-search">
+    <input id="q" type="search" placeholder="搜索篇名或正文" aria-label="搜索篇名或正文" autocomplete="off">
+  </div>
+
+  <div class="rail-set">
+    <div class="set-row">
+      <label for="fs">字号</label>
+      <input id="fs" type="range" min="15" max="24" step="0.5" value="17.5">
+      <output id="fsv" for="fs">17.5 px</output>
+    </div>
+    <div class="set-row">
+      <label for="mw">行宽</label>
+      <input id="mw" type="range" min="22" max="52" step="1" value="38">
+      <output id="mwv" for="mw">38 字</output>
+    </div>
+    <button class="set-reset" id="setReset" type="button">恢复默认</button>
+  </div>
+
+  <div class="rail-count" id="count">正在载入…</div>
+  <nav class="toc" id="toc" aria-label="篇目"></nav>
+
+  <div class="rail-foot">
+    <kbd>←</kbd><kbd>→</kbd> 切换篇目 &nbsp; <kbd>/</kbd> 搜索<br>
+    <kbd>Esc</kbd> 清空搜索
+  </div>
+</aside>
+
+<div class="scrim" id="scrim"></div>
+
+<main class="stage">
+  <div class="paper" id="paper"></div>
+</main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

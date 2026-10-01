@@ -1,0 +1,22 @@
+{
+  "title": "談藝錄",
+  "subtitle": "原文 · 導讀",
+  "blurb": "錢鍾書論詩論藝",
+  "defaultCollection": "daodu",
+  "collections": [
+    {
+      "id": "daodu",
+      "label": "导读",
+      "dir": "interpretation",
+      "lead": "quote",
+      "empty": "在 interpretation 目录里还没有找到 .md 导读文件。"
+    },
+    {
+      "id": "yuanwen",
+      "label": "原文",
+      "dir": "content",
+      "lead": "para",
+      "empty": "在 content 目录里还没有找到 .md 原文文件。"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# 构建产物（由 tools/build.py 生成，或由 GitHub Actions 在云端生成）
+_site/
+
+# Python
+__pycache__/
+*.pyc
+
+# 编辑器的临时目录
+_tmp/
+_pages/
+.trae-html-share-packages/
+
+# 原书 PDF：受版权保护，只留在本地，不随仓库发布
+*.pdf
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
