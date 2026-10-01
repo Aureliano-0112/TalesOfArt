@@ -168,7 +168,7 @@ def main():
     manifest = build_manifest(cfg)
 
     os.makedirs(os.path.dirname(MANIFEST), exist_ok=True)
-    with open(MANIFEST, "w", encoding="utf-8") as fh:
+    with open(MANIFEST, "w", encoding="utf-8", newline="\n") as fh:
         json.dump(manifest, fh, ensure_ascii=False, indent=2)
         fh.write("\n")
 
